@@ -90,3 +90,21 @@ SELECT * FROM Genero
 EXEC sp_ValidadReg @codigo = 2, @nombre = 'series'
 EXEC sp_ValidadReg @codigo = 9, @nombre = 'series'
 GO
+
+/*Eliminar Registro a travez de un SP*/
+CREATE PROCEDURE SP_DelGen
+    @codigo VARCHAR (4)
+AS 
+    BEGIN
+        DELETE FROM Genero
+        WHERE Genero.idGenero = @Codigo
+    END
+GO
+
+/*Ejecturar Sp*/
+EXEC SP_DelGen @Codigo = 11
+GO
+
+/*Listar registro de la tabla genero*/
+SELECT * FROM Genero
+GO
