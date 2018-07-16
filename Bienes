@@ -1,0 +1,110 @@
+create database BienesV18
+go
+
+use BienesV18
+go
+
+create table Area
+(
+	Cod_Area int identity(1,1) not null,
+	Nomb_Area varchar(30),
+	Lug_Area varchar(60),
+	Constraint Cod_Area_PK primary key (Cod_Area)
+)
+go
+
+create table Empleados
+(
+	DNI_Emp char(8) not null,
+	Nomb_Emp varchar(60),
+	Ape_Emp varchar(60),
+	Cod_Area int not null,
+	Cel_Emp char(9),
+	Cont_Emp varchar(30),
+	constraint DNI_Emp_PK primary key (DNI_Emp)
+)
+go
+
+create table Bien
+(
+	Cod_Bien char(12) not null,
+	Deno_Bien varchar(100),
+	Est_Bien varchar(30),
+	Cond_Bien varchar(30),
+	Marca_Bien varchar(30),
+	Modelo_Bien varchar(30),
+	Color_Bien varchar(30),
+	Serie_Bien varchar(30),
+	Dimen_Bien varchar(30),
+	Obser_Bien varchar(200),
+	Fec_Adqui_Bien varchar(15),
+	Valor_Bien decimal(10,2),
+	Por_Dep decimal(10,2),
+	constraint Cod_Bien_PK primary key (Cod_Bien)
+	select * from Bien
+)
+go
+
+
+create table GrupoBien
+(
+	Cod_Grup varchar(2) not null,
+	Deno_Grup varchar(100),
+	constraint Cod_Grup_PK primary key (Cod_Grup)
+)
+go
+
+create table ClaseBien
+(
+	Cod_Clase varchar(4) not null,
+	Deno_Clase varchar(100),
+	Cod_Grup varchar(2) not null,
+	Por_Dep decimal(10,2),
+	constraint Cod_Clase_PK primary key (Cod_Clase)
+)
+go
+
+create table TipoBien
+(
+	Cod_Tipo varchar(8) not null,
+	Deno_Tipo varchar(100),
+	Cod_Clase varchar(4),
+	constraint Cod_Tipo_PK primary key (Cod_Tipo)
+)
+go
+ 
+create table Asignacion
+(
+	Cod_Asig int identity(1,1) not null,
+	Cod_Bien char(12) not null,
+	DNI_Emp char(8) not null,
+	Area_Emp varchar(30),
+	Est_Asig varchar(30),
+	Fec_Asig varchar(15),
+	Fec_Desig varchar(15),
+	constraint Cod_Asig_PK primary key (Cod_Asig)
+)
+go
+
+
+insert into Area values
+('Caja','Municipalidad de San Luis'),
+('Contabilidad','Municipalidad de San Luis'),
+('Demuna','Municipalidad de San Luis'),
+('Informatica','Municipalidad de San Luis'), 
+('Logistica','Municipalidad de San Luis'),
+('Obras','Municipalidad de San Luis'),
+('Presupuesto','Municipalidad de San Luis'),
+('Tesoreria','Municipalidad de San Luis')
+GO
+
+insert into Empleados VALUES
+('70787017','Joel','Cuadros','1','973144541','CAS'),
+('70787027','Oscar','Ancajima','2','973144542','CAS'),
+('70787037','Alvaro','Iturrizaga','3','973144543','CAS'),
+('70787047','Diego','GoldRa','4','973144544','CAS'),
+('70787057','Ivan','Marin','5','973144545','CAS'),
+('70787067','Shopa','Paucar','6','973144546','CAS'),
+('70787077','Chinesse','Rojas','7','973144547','CAS'),
+('70787087','Zano','Pelaez','8','973144548','CAS')
+GO
